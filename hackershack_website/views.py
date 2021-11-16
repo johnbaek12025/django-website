@@ -3,6 +3,7 @@
 from django.shortcuts import render
 
 def index(request):
+    # print(f"request is {request}")
     return render(request, 'index.html')
     # template = loader.get_template('index.html')
     # return HttpResponse(template.render({}, request))
