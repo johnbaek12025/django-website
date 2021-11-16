@@ -1,26 +1,19 @@
-<!-- <div>
-    {% url 'index' as index_url %} 
-    <span><a href="{% url 'index' %}">Home</a></span>
-    {% url 'index' as about_url %} 
-    <span><a href="{% url 'about' %}">About</a></span>
-    {% url 'index' as contact_url %} 
-    <span><a href="{% url 'contact' %}">Contact</a></span>
-</div> -->
-
 <div>
-    {% url 'index' as index_url %} 
+    {% url 'public:index' as index_url %} 
     <span>{% if request.path == index_url %}Home{% else %}<a href="{{index_url}}">Home</a>{% endif %}</span>
-    {% url 'about' as about_url %} 
+    {% url 'public:about' as about_url %} 
     <span>{% if request.path == about_url %}About{% else %}<a href="{{about_url}}">About</a>{% endif %}</span>
-    {% url 'contact' as contact_url %} 
+    {% url 'public:contact' as contact_url %} 
     <span>{% if request.path == contact_url %}Contact{% else %}<a href="{{contact_url}}">Contact</a>{% endif %}</span>    
     <span style="float:right">
         {% if user.is_authenticated %}
-            {% url 'profile' as profile_url %} 
-            <span>Hi {% if request.path == profile_url %}{{user.username}}!{% else %}<a href="{{profile_url}}">{{user.username}}</a>{% endif %}</span>            
-            <span><a href="{% url 'logout' %}">Logout</a></span>
-        {% else %}        
-            <span><a href="{% url 'login' %}">Login</a></span>
+            {% url 'accounts:profile' as profile_url %} 
+            <span>Hi {% if request.path == profile_url %}{{user.username}}!{% else %}<a href="{{profile_url}}">{{user.username}}</a>{% endif %}</span>
+            {% url 'accounts:logout' as logout_url %}
+            <span><a href="{{logout_url}}">Logout</a></span>
+        {% else %}
+            {% url 'accounts:login' as login_url %}
+            <span><a href="{{login_url}}">Login</a></span>
         {% endif %}
     </span>
 </div>

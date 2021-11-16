@@ -22,23 +22,6 @@ from . import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", views.index, name="index"),
-    path("about", views.about, name="about"),
-    path("contact", views.contact, name="contact"),
-    path("accounts/profile", views.ProfileView.as_view(), name="profile"),
-    # Django Auth
-    path(
-        "accounts/login",
-        auth_views.LoginView.as_view(template_name="accounts/login.html"),
-        name="login",
-    ),
-    path("accounts/logout", auth_views.LogoutView.as_view(), name="logout"),
+    path("", include('hackershack_website.apps.public.urls')),
+    path("accounts/", include('hackershack_website.apps.accounts.urls')),    
 ]
-
-# path('accounts/', include('django.contrib.auth.urls')),
-
-# admin/
-# [name='index']s
-# about [name='about']
-# contact [name='contact']
-# accounts/login [name='login']
