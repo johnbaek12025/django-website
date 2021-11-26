@@ -1,0 +1,13 @@
+version: '3.10'
+
+x-services-volumes: &service-volumes
+ - ./:/app/:rw,cached
+
+
+services: 
+ website:    
+  image: hackershack-website-tutorial:latest
+  command: python manage.py runserver 0.0.0.0:8000
+  volumes: *service-volumes  
+  ports:
+   - "8000:8000"
